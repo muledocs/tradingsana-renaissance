@@ -1,69 +1,70 @@
 import { Fan, Zap, FireExtinguisher, Car, Wind, Thermometer } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
-const categories = [
-  {
-    icon: Fan,
-    title: "Fan Systems",
-    description: "Premium Rosenberg ventilation fans for industrial and commercial applications",
-    features: ["Axial Fans", "Centrifugal Fans", "Mixed Flow Fans", "EC Technology"],
-    color: "bg-blue-500/10 text-blue-600",
-    href: "/products/fans"
-  },
-  {
-    icon: Thermometer,
-    title: "VRF Units",
-    description: "Variable Refrigerant Flow systems for efficient climate control",
-    features: ["Energy Efficient", "Multi-Zone Control", "Heat Recovery", "Smart Controls"],
-    color: "bg-green-500/10 text-green-600",
-    href: "/products/vrf"
-  },
-  {
-    icon: FireExtinguisher,
-    title: "Fire Pumps",
-    description: "Bristol firefighting pumps for critical safety applications",
-    features: ["Electric Pumps", "Diesel Pumps", "Jockey Pumps", "Controllers"],
-    color: "bg-red-500/10 text-red-600",
-    href: "/products/fire-pumps"
-  },
-  {
-    icon: Car,
-    title: "Parking Ventilation",
-    description: "Complete jet fan systems for underground parking facilities",
-    features: ["Jet Fans", "CO Detection", "Control Systems", "Emergency Mode"],
-    color: "bg-purple-500/10 text-purple-600",
-    href: "/products/parking"
-  },
-  {
-    icon: Wind,
-    title: "Air Curtains",
-    description: "Commercial air curtains for entrance protection and climate control",
-    features: ["Door Air Curtains", "Industrial Models", "Heated Options", "Remote Control"],
-    color: "bg-orange-500/10 text-orange-600",
-    href: "/products/air-curtains"
-  },
-  {
-    icon: Zap,
-    title: "HVAC Solutions",
-    description: "Complete heating, ventilation, and air conditioning systems",
-    features: ["System Design", "Installation", "Maintenance", "Energy Audit"],
-    color: "bg-cyan-500/10 text-cyan-600",
-    href: "/products/hvac"
-  }
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ProductCategories() {
+  const { t, isRTL } = useLanguage();
+
+  const categories = [
+    {
+      icon: Fan,
+      title: t('products.fans.title'),
+      description: t('products.fans.description'),
+      features: ["Axial Fans", "Centrifugal Fans", "Mixed Flow Fans", "EC Technology"],
+      color: "bg-blue-500/10 text-blue-600",
+      href: "/products/fans"
+    },
+    {
+      icon: Thermometer,
+      title: t('products.vrf.title'),
+      description: t('products.vrf.description'),
+      features: ["Energy Efficient", "Multi-Zone Control", "Heat Recovery", "Smart Controls"],
+      color: "bg-green-500/10 text-green-600",
+      href: "/products/vrf"
+    },
+    {
+      icon: FireExtinguisher,
+      title: t('products.fire.title'),
+      description: t('products.fire.description'),
+      features: ["Electric Pumps", "Diesel Pumps", "Jockey Pumps", "Controllers"],
+      color: "bg-red-500/10 text-red-600",
+      href: "/products/fire-pumps"
+    },
+    {
+      icon: Car,
+      title: t('products.parking.title'),
+      description: t('products.parking.description'),
+      features: ["Jet Fans", "CO Detection", "Control Systems", "Emergency Mode"],
+      color: "bg-purple-500/10 text-purple-600",
+      href: "/products/parking"
+    },
+    {
+      icon: Wind,
+      title: t('products.curtains.title'),
+      description: t('products.curtains.description'),
+      features: ["Door Air Curtains", "Industrial Models", "Heated Options", "Remote Control"],
+      color: "bg-orange-500/10 text-orange-600",
+      href: "/products/air-curtains"
+    },
+    {
+      icon: Zap,
+      title: t('products.hvac.title'),
+      description: t('products.hvac.description'),
+      features: ["System Design", "Installation", "Maintenance", "Energy Audit"],
+      color: "bg-cyan-500/10 text-cyan-600",
+      href: "/products/hvac"
+    }
+  ];
   return (
-    <section className="py-20 bg-gradient-card">
+    <section className={`py-20 bg-gradient-card ${isRTL ? 'rtl' : ''}`}>
       <div className="container">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            Our <span className="text-gradient">Product Categories</span>
+            {t('products.title')} <span className="text-gradient"></span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Comprehensive range of industrial ventilation and HVAC solutions designed for 
-            optimal performance and energy efficiency
+            {t('products.description')}
           </p>
         </div>
 
@@ -108,7 +109,7 @@ export default function ProductCategories() {
                     asChild
                   >
                     <a href={category.href}>
-                      Learn More →
+                      {t('products.learnMore')} →
                     </a>
                   </Button>
                 </div>
@@ -119,7 +120,7 @@ export default function ProductCategories() {
 
         <div className="text-center mt-12">
           <Button size="lg" variant="outline" className="font-semibold">
-            View All Products
+            {t('products.viewAll')}
           </Button>
         </div>
       </div>

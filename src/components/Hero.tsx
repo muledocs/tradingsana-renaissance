@@ -1,17 +1,20 @@
 import { ArrowRight, Shield, Award, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 import heroImage from "@/assets/hero-industrial.jpg";
 
 export default function Hero() {
+  const { t, isRTL } = useLanguage();
+  
   const stats = [
-    { icon: Users, label: "Happy Clients", value: "500+" },
-    { icon: Award, label: "Years Experience", value: "15+" },
-    { icon: Shield, label: "Projects Completed", value: "1000+" },
+    { icon: Users, label: t('hero.clients'), value: t('common.500Plus') },
+    { icon: Award, label: t('hero.experience'), value: t('common.15Plus') },
+    { icon: Shield, label: t('hero.projects'), value: t('common.1000Plus') },
   ];
 
   return (
-    <section className="relative bg-gradient-to-br from-background via-muted/30 to-background min-h-[90vh] flex items-center">
+    <section className={`relative bg-gradient-to-br from-background via-muted/30 to-background min-h-[90vh] flex items-center ${isRTL ? 'rtl' : ''}`}>
       {/* Background Pattern */}
       <div className="absolute inset-0 industrial-pattern opacity-5"></div>
       
@@ -22,28 +25,27 @@ export default function Hero() {
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 rounded-full text-primary text-sm font-medium">
                 <Shield className="h-4 w-4" />
-                Industry Leading Solutions
+                {t('hero.badge')}
               </div>
               
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
-                <span className="text-gradient">Industrial Ventilation</span>
+                <span className="text-gradient">{t('hero.title1')}</span>
                 <br />
-                <span className="text-foreground">& HVAC Excellence</span>
+                <span className="text-foreground">{t('hero.title2')}</span>
               </h1>
               
               <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
-                Leading provider of premium ventilation systems, VRF units, fire pumps, and comprehensive HVAC solutions. 
-                Engineering excellence for commercial and industrial applications worldwide.
+                {t('hero.description')}
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button className="btn-hero group">
-                Explore Products
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                {t('hero.exploreProducts')}
+                <ArrowRight className={`ml-2 h-5 w-5 transition-transform group-hover:${isRTL ? '-translate-x-1' : 'translate-x-1'}`} />
               </Button>
               <Button variant="outline" size="lg" className="font-semibold">
-                Download Catalog
+                {t('hero.downloadCatalog')}
               </Button>
             </div>
 
@@ -78,8 +80,8 @@ export default function Hero() {
             <Card className="absolute bottom-8 left-8 right-8 p-6 bg-card/95 backdrop-blur-sm border shadow-medium">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-semibold text-card-foreground">Premium Rosenberg Fans</h3>
-                  <p className="text-sm text-muted-foreground">German engineered ventilation systems</p>
+                  <h3 className="font-semibold text-card-foreground">{t('hero.fanCard')}</h3>
+                  <p className="text-sm text-muted-foreground">{t('hero.fanSubtitle')}</p>
                 </div>
                 <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center">
                   <Shield className="h-6 w-6 text-white" />

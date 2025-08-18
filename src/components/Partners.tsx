@@ -1,55 +1,56 @@
 import { Card, CardContent } from "@/components/ui/card";
-
-const partners = [
-  {
-    name: "Rosenberg",
-    description: "The Air Movement Group",
-    logo: "/api/placeholder/120/60",
-    specialty: "Ventilation Fans"
-  },
-  {
-    name: "Bristol",
-    description: "Firefighting Solutions",
-    logo: "/api/placeholder/120/60",
-    specialty: "Fire Pumps"
-  },
-  {
-    name: "ECOFIT",
-    description: "EC Technology",
-    logo: "/api/placeholder/120/60",
-    specialty: "Energy Efficient"
-  },
-  {
-    name: "UL",
-    description: "Safety Certification",
-    logo: "/api/placeholder/120/60",
-    specialty: "Quality Assurance"
-  },
-  {
-    name: "TÜV SÜD",
-    description: "Testing & Certification",
-    logo: "/api/placeholder/120/60",
-    specialty: "Standards Compliance"
-  },
-  {
-    name: "AMCA",
-    description: "Air Movement & Control",
-    logo: "/api/placeholder/120/60",
-    specialty: "Industry Standards"
-  }
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Partners() {
+  const { t, isRTL } = useLanguage();
+
+  const partners = [
+    {
+      name: "Rosenberg",
+      description: "The Air Movement Group",
+      logo: "/api/placeholder/120/60",
+      specialty: "Ventilation Fans"
+    },
+    {
+      name: "Bristol",
+      description: "Firefighting Solutions",
+      logo: "/api/placeholder/120/60",
+      specialty: "Fire Pumps"
+    },
+    {
+      name: "ECOFIT",
+      description: "EC Technology",
+      logo: "/api/placeholder/120/60",
+      specialty: "Energy Efficient"
+    },
+    {
+      name: "UL",
+      description: "Safety Certification",
+      logo: "/api/placeholder/120/60",
+      specialty: "Quality Assurance"
+    },
+    {
+      name: "TÜV SÜD",
+      description: "Testing & Certification",
+      logo: "/api/placeholder/120/60",
+      specialty: "Standards Compliance"
+    },
+    {
+      name: "AMCA",
+      description: "Air Movement & Control",
+      logo: "/api/placeholder/120/60",
+      specialty: "Industry Standards"
+    }
+  ];
   return (
-    <section className="py-20 bg-muted/30">
+    <section className={`py-20 bg-muted/30 ${isRTL ? 'rtl' : ''}`}>
       <div className="container">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            Trusted <span className="text-gradient">Partners</span>
+            <span className="text-gradient">{t('partners.title')}</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We collaborate with world-leading manufacturers and certification bodies 
-            to ensure the highest quality standards
+            {t('partners.description')}
           </p>
         </div>
 
@@ -89,13 +90,13 @@ export default function Partners() {
 
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-6">
-            Interested in becoming a partner? We're always looking for innovative companies to collaborate with.
+            {t('partners.interested')}
           </p>
           <a 
             href="/contact" 
             className="inline-flex items-center gap-2 text-primary hover:text-primary-hover font-medium transition-colors"
           >
-            Partner With Us →
+            {t('partners.partnerWithUs')} →
           </a>
         </div>
       </div>

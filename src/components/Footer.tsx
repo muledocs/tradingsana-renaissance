@@ -1,33 +1,35 @@
 import { MapPin, Phone, Mail, Clock, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
-const quickLinks = [
-  { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
-  { name: "Products", href: "/products" },
-  { name: "Projects", href: "/projects" },
-  { name: "Contact", href: "/contact" }
-];
-
-const products = [
-  { name: "Ventilation Fans", href: "/products/fans" },
-  { name: "VRF Systems", href: "/products/vrf" },
-  { name: "Fire Pumps", href: "/products/fire-pumps" },
-  { name: "Air Curtains", href: "/products/air-curtains" },
-  { name: "HVAC Solutions", href: "/products/hvac" }
-];
-
-const socialLinks = [
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Instagram, href: "#", label: "Instagram" }
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Footer() {
+  const { t, isRTL } = useLanguage();
+
+  const quickLinks = [
+    { name: t('header.home'), href: "/" },
+    { name: t('header.about'), href: "/about" },
+    { name: t('header.products'), href: "/products" },
+    { name: t('header.projects'), href: "/projects" },
+    { name: t('header.contact'), href: "/contact" }
+  ];
+
+  const products = [
+    { name: "Ventilation Fans", href: "/products/fans" },
+    { name: "VRF Systems", href: "/products/vrf" },
+    { name: "Fire Pumps", href: "/products/fire-pumps" },
+    { name: "Air Curtains", href: "/products/air-curtains" },
+    { name: "HVAC Solutions", href: "/products/hvac" }
+  ];
+
+  const socialLinks = [
+    { icon: Facebook, href: "#", label: "Facebook" },
+    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Linkedin, href: "#", label: "LinkedIn" },
+    { icon: Instagram, href: "#", label: "Instagram" }
+  ];
   return (
-    <footer className="bg-secondary-dark text-secondary-foreground">
+    <footer className={`bg-secondary-dark text-secondary-foreground ${isRTL ? 'rtl' : ''}`}>
       {/* Main Footer */}
       <div className="container py-16">
         <div className="grid lg:grid-cols-4 gap-8">
@@ -38,14 +40,13 @@ export default function Footer() {
                 <span className="text-2xl font-bold text-white">S</span>
               </div>
               <div>
-                <span className="text-xl font-bold text-white">TradingSANA</span>
-                <p className="text-xs text-secondary-foreground/70">Industrial Solutions</p>
+                <span className="text-xl font-bold text-white">{t('header.company')}</span>
+                <p className="text-xs text-secondary-foreground/70">{t('header.subtitle')}</p>
               </div>
             </div>
             
             <p className="text-secondary-foreground/80 leading-relaxed">
-              Leading provider of industrial ventilation and HVAC solutions. 
-              Engineering excellence for commercial and industrial applications worldwide.
+              {t('footer.description')}
             </p>
 
             {/* Social Links */}
@@ -65,7 +66,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-6">
-            <h3 className="text-lg font-semibold text-white">Quick Links</h3>
+            <h3 className="text-lg font-semibold text-white">{t('footer.quickLinks')}</h3>
             <div className="space-y-3">
               {quickLinks.map((link, index) => (
                 <a
@@ -81,7 +82,7 @@ export default function Footer() {
 
           {/* Products */}
           <div className="space-y-6">
-            <h3 className="text-lg font-semibold text-white">Our Products</h3>
+            <h3 className="text-lg font-semibold text-white">{t('footer.products')}</h3>
             <div className="space-y-3">
               {products.map((product, index) => (
                 <a
@@ -97,7 +98,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div className="space-y-6">
-            <h3 className="text-lg font-semibold text-white">Contact Info</h3>
+            <h3 className="text-lg font-semibold text-white">{t('footer.contact')}</h3>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
@@ -110,15 +111,15 @@ export default function Footer() {
 
               <div className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-primary flex-shrink-0" />
-                <a href="tel:+1234567890" className="text-secondary-foreground/80 hover:text-primary transition-colors">
-                  +1 (234) 567-8900
+                <a href={`tel:${t('header.phone')}`} className="text-secondary-foreground/80 hover:text-primary transition-colors">
+                  {t('header.phone')}
                 </a>
               </div>
 
               <div className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-primary flex-shrink-0" />
-                <a href="mailto:info@tradingsana.com" className="text-secondary-foreground/80 hover:text-primary transition-colors">
-                  info@tradingsana.com
+                <a href={`mailto:${t('header.email')}`} className="text-secondary-foreground/80 hover:text-primary transition-colors">
+                  {t('header.email')}
                 </a>
               </div>
 
@@ -136,18 +137,18 @@ export default function Footer() {
         {/* Newsletter */}
         <div className="mt-12 pt-8 border-t border-secondary-foreground/20">
           <div className="max-w-md">
-            <h3 className="text-lg font-semibold text-white mb-4">Stay Updated</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">{t('footer.stayUpdated')}</h3>
             <p className="text-secondary-foreground/80 mb-4">
-              Subscribe to our newsletter for the latest product updates and industry insights.
+              {t('footer.newsletterDescription')}
             </p>
             <div className="flex gap-2">
               <Input 
                 type="email" 
-                placeholder="Your email address" 
+                placeholder={t('footer.emailPlaceholder')}
                 className="bg-secondary-foreground/10 border-secondary-foreground/20 text-white placeholder:text-secondary-foreground/50"
               />
               <Button className="btn-hero px-6">
-                Subscribe
+                {t('footer.subscribe')}
               </Button>
             </div>
           </div>
@@ -159,17 +160,17 @@ export default function Footer() {
         <div className="container py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-secondary-foreground/60 text-sm">
-              © 2024 TradingSANA. All rights reserved.
+              {t('footer.copyright')}
             </p>
             <div className="flex gap-6 text-sm">
               <a href="/privacy" className="text-secondary-foreground/60 hover:text-primary transition-colors">
-                Privacy Policy
+                {t('footer.privacy')}
               </a>
               <a href="/terms" className="text-secondary-foreground/60 hover:text-primary transition-colors">
-                Terms of Service
+                {t('footer.terms')}
               </a>
               <a href="/sitemap" className="text-secondary-foreground/60 hover:text-primary transition-colors">
-                Sitemap
+                {t('footer.sitemap')}
               </a>
             </div>
           </div>

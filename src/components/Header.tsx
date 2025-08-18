@@ -2,35 +2,39 @@ import { useState } from "react";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Products", href: "/products" },
-  { name: "About", href: "/about" },
-  { name: "Projects", href: "/projects" },
-  { name: "Contact", href: "/contact" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t, isRTL } = useLanguage();
+
+  const navigation = [
+    { name: t('header.home'), href: "/" },
+    { name: t('header.products'), href: "/products" },
+    { name: t('header.about'), href: "/about" },
+    { name: t('header.projects'), href: "/projects" },
+    { name: t('header.contact'), href: "/contact" },
+  ];
 
   return (
-    <header className="bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
+    <header className={cn("bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50", isRTL && "rtl")}>
       {/* Top Bar */}
       <div className="bg-primary text-primary-foreground">
         <div className="container flex items-center justify-between py-2 text-sm">
           <div className="flex items-center gap-6">
-            <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-primary-light transition-colors">
+            <a href={`tel:${t('header.phone')}`} className="flex items-center gap-2 hover:text-primary-light transition-colors">
               <Phone className="h-4 w-4" />
-              +1 (234) 567-8900
+              {t('header.phone')}
             </a>
-            <a href="mailto:info@tradingsana.com" className="flex items-center gap-2 hover:text-primary-light transition-colors">
+            <a href={`mailto:${t('header.email')}`} className="flex items-center gap-2 hover:text-primary-light transition-colors">
               <Mail className="h-4 w-4" />
-              info@tradingsana.com
+              {t('header.email')}
             </a>
           </div>
-          <div className="hidden md:block">
-            <span>Professional Industrial Solutions</span>
+          <div className="hidden md:flex items-center gap-4">
+            <span>{t('header.tagline')}</span>
+            <LanguageSwitcher />
           </div>
         </div>
       </div>
@@ -45,8 +49,8 @@ export default function Header() {
                 <span className="text-2xl font-bold text-white">S</span>
               </div>
               <div>
-                <span className="text-xl font-bold text-gradient">TradingSANA</span>
-                <p className="text-xs text-muted-foreground">Industrial Solutions</p>
+                <span className="text-xl font-bold text-gradient">{t('header.company')}</span>
+                <p className="text-xs text-muted-foreground">{t('header.subtitle')}</p>
               </div>
             </a>
           </div>
@@ -66,11 +70,12 @@ export default function Header() {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
+            <LanguageSwitcher />
             <Button variant="outline" size="sm">
-              Get Quote
+              {t('header.getQuote')}
             </Button>
             <Button className="btn-hero">
-              Contact Us
+              {t('header.contactUs')}
             </Button>
           </div>
 
@@ -109,11 +114,12 @@ export default function Header() {
               </a>
             ))}
             <div className="pt-4 space-y-3">
+              <LanguageSwitcher />
               <Button variant="outline" className="w-full">
-                Get Quote
+                {t('header.getQuote')}
               </Button>
               <Button className="btn-hero w-full">
-                Contact Us
+                {t('header.contactUs')}
               </Button>
             </div>
           </div>
