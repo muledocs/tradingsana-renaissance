@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -44,7 +45,7 @@ export default function Header() {
         <nav className="flex items-center justify-between py-4">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center space-x-3">
+            <Link to="/" className="flex items-center space-x-3">
               <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center">
                 <span className="text-2xl font-bold text-white">S</span>
               </div>
@@ -52,19 +53,19 @@ export default function Header() {
                 <span className="text-xl font-bold text-gradient">{t('header.company')}</span>
                 <p className="text-xs text-muted-foreground">{t('header.subtitle')}</p>
               </div>
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className="text-foreground hover:text-primary transition-colors font-medium"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -104,14 +105,14 @@ export default function Header() {
         >
           <div className="space-y-4">
             {navigation.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className="block py-2 text-foreground hover:text-primary transition-colors font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
             <div className="pt-4 space-y-3">
               <LanguageSwitcher />

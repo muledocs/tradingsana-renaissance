@@ -2,6 +2,7 @@ import { Fan, Zap, FireExtinguisher, Car, Wind, Thermometer } from "lucide-react
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Link } from "react-router-dom";
 
 export default function ProductCategories() {
   const { t, isRTL } = useLanguage();
@@ -108,9 +109,9 @@ export default function ProductCategories() {
                     className="w-full justify-start p-0 h-auto text-primary hover:text-primary-hover font-medium"
                     asChild
                   >
-                    <a href={category.href}>
+                    <Link to={category.href}>
                       {t('products.learnMore')} →
-                    </a>
+                    </Link>
                   </Button>
                 </div>
               </CardContent>

@@ -2,6 +2,7 @@ import { MapPin, Phone, Mail, Clock, Facebook, Twitter, Linkedin, Instagram } fr
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const { t, isRTL } = useLanguage();
@@ -29,7 +30,7 @@ export default function Footer() {
     { icon: Instagram, href: "#", label: "Instagram" }
   ];
   return (
-    <footer className={`bg-secondary-dark text-secondary-foreground ${isRTL ? 'rtl' : ''}`}>
+    <footer className={`bg-secondary-dark text-primary-foreground ${isRTL ? 'rtl' : ''}`}>
       {/* Main Footer */}
       <div className="container py-16">
         <div className="grid lg:grid-cols-4 gap-8">
@@ -41,11 +42,11 @@ export default function Footer() {
               </div>
               <div>
                 <span className="text-xl font-bold text-white">{t('header.company')}</span>
-                <p className="text-xs text-secondary-foreground/70">{t('header.subtitle')}</p>
+                <p className="text-xs text-primary-foreground/70">{t('header.subtitle')}</p>
               </div>
             </div>
             
-            <p className="text-secondary-foreground/80 leading-relaxed">
+            <p className="text-primary-foreground/90 leading-relaxed">
               {t('footer.description')}
             </p>
 
@@ -69,13 +70,13 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-white">{t('footer.quickLinks')}</h3>
             <div className="space-y-3">
               {quickLinks.map((link, index) => (
-                <a
+                <Link
                   key={index}
-                  href={link.href}
-                  className="block text-secondary-foreground/80 hover:text-primary transition-colors"
+                  to={link.href}
+                  className="block text-primary-foreground/80 hover:text-primary transition-colors"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -85,13 +86,13 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-white">{t('footer.products')}</h3>
             <div className="space-y-3">
               {products.map((product, index) => (
-                <a
+                <Link
                   key={index}
-                  href={product.href}
-                  className="block text-secondary-foreground/80 hover:text-primary transition-colors"
+                  to={product.href}
+                  className="block text-primary-foreground/80 hover:text-primary transition-colors"
                 >
                   {product.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

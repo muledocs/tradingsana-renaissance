@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Link } from "react-router-dom";
 
 export default function Partners() {
   const { t, isRTL } = useLanguage();
@@ -92,12 +93,12 @@ export default function Partners() {
           <p className="text-muted-foreground mb-6">
             {t('partners.interested')}
           </p>
-          <a 
-            href="/contact" 
+          <Link 
+            to="/contact" 
             className="inline-flex items-center gap-2 text-primary hover:text-primary-hover font-medium transition-colors"
           >
             {t('partners.partnerWithUs')} →
-          </a>
+          </Link>
         </div>
       </div>
     </section>
